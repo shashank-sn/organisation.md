@@ -264,7 +264,7 @@ view on github
 </a>
 </div>
 <div class="heroStats">
-<div class="heroStat"><strong>6</strong> mcp tools</div>
+<div class="heroStat"><strong>14</strong> mcp tools</div>
 <div class="heroStat"><strong>pr-based</strong> write flow</div>
 <div class="heroStat"><strong>1</strong> env var needed</div>
 </div>
@@ -299,7 +299,7 @@ view on github
 <section class="section sectionAlt">
 <div class="sectionInner">
 <div class="sectionLabel">tools</div>
-<h2 class="sectionTitle">six mcp tools, one purpose</h2>
+<h2 class="sectionTitle">14 mcp tools, one purpose</h2>
 <p class="sectionSub">read, search, and propose updates to your organisation&rsquo;s context &mdash; all through pull requests.</p>
 <div class="toolsGrid">
 <div class="toolCard">
@@ -342,6 +342,62 @@ view on github
 <div class="toolInfo">
 <code>list_context_files</code>
 <p>list all files in the context directory.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F4E5;</div>
+<div class="toolInfo">
+<code>import_file</code>
+<p>import a txt, md, or docx file into the knowledge base.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x2795;</div>
+<div class="toolInfo">
+<code>add_info</code>
+<p>add info via natural language &mdash; auto-detects the section.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x2796;</div>
+<div class="toolInfo">
+<code>remove_info</code>
+<p>remove info via natural language &mdash; auto-detects what to remove.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F6E1;&#xFE0F;</div>
+<div class="toolInfo">
+<code>check_roles</code>
+<p>check which users can modify which files.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F511;</div>
+<div class="toolInfo">
+<code>check_permissions</code>
+<p>check a user&rsquo;s permissions across the repo.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F4CB;</div>
+<div class="toolInfo">
+<code>configure_codeowners</code>
+<p>set up codeowners for path-level access control.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F41B;</div>
+<div class="toolInfo">
+<code>report_bug</code>
+<p>auto-detect the area and file a github issue.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F4A1;</div>
+<div class="toolInfo">
+<code>suggest_feature</code>
+<p>suggest a feature &mdash; creates a github issue automatically.</p>
 </div>
 </div>
 </div>
