@@ -1,10 +1,10 @@
-# Agent Prompt
+# agent prompt
 
-Copy this into any AI agent to give it access to your organisation's context.
+copy this into any ai agent to give it access to your organisation's context.
 
-## MCP Server Setup
+## mcp server setup
 
-Add the following to your `.mcp.json` or equivalent MCP host configuration:
+add the following to your `.mcp.json` or equivalent mcp host configuration:
 
 ```json
 {
@@ -22,17 +22,17 @@ Add the following to your `.mcp.json` or equivalent MCP host configuration:
 }
 ```
 
-## Prompt Template
+## prompt template
 
 ```markdown
-Before answering any question about the organisation, read organisation.md
-via the MCP server. You have these tools available:
+before answering any question about the organisation, read organisation.md
+via the mcp server. you have these tools available:
 
-- `read_org` — Read the full context file
-- `read_section` — Read a specific section
-- `search_context` — Search across all context files
-- `list_context_files` — See what supporting files are available
+- `read_org` — read the full context file
+- `read_section` — read a specific section
+- `search_context` — search across all context files
+- `list_context_files` — see what supporting files are available
 
-When you need to record new information (a decision, project update, team change),
+when you need to record new information (a decision, project update, team change),
 use `update_section` or `propose_change` — these create pull requests for review.
 ```

@@ -1,27 +1,27 @@
-# Quickstart
+# quickstart
 
-## Prerequisites
+## prerequisites
 
-- Node.js 20+
-- A GitHub account
-- A Personal Access Token with `repo` scope
+- node.js 20+
+- a github account
+- a personal access token with `repo` scope
 
-## 1. Generate a GitHub Personal Access Token
+## 1. generate a github personal access token
 
-1. Go to [github.com/settings/tokens](https://github.com/settings/tokens)
-2. Click **Generate new token (classic)** → **Generate new token**
-3. Give it a name (e.g., "organisation-md")
-4. Select the `repo` scope (full control of private repositories)
-5. Click **Generate token**
-6. Copy the token — you won't see it again
+1. go to [github.com/settings/tokens](https://github.com/settings/tokens)
+2. click **generate new token (classic)** → **generate new token**
+3. give it a name (e.g., "organisation-md")
+4. select the `repo` scope (full control of private repositories)
+5. click **generate token**
+6. copy the token — you won't see it again
 
-## 2. Fork the repository
+## 2. fork the repository
 
-1. Go to [github.com/shashank-sn/organisation.md](https://github.com/shashank-sn/organisation.md)
-2. Click **Fork** → **Create fork**
-3. Choose your personal account or an organisation
+1. go to [github.com/shashank-sn/organisation.md](https://github.com/shashank-sn/organisation.md)
+2. click **fork** → **create fork**
+3. choose your personal account or an organisation
 
-## 3. Run with npx (no clone needed)
+## 3. run with npx (no clone needed)
 
 ```bash
 export GITHUB_TOKEN=ghp_your_token_here
@@ -30,9 +30,9 @@ export GITHUB_REPO=organisation.md
 npx @shashank-sn/organisation-md
 ```
 
-The MCP server starts in stdio mode. Connect your AI agent to it.
+the mcp server starts in stdio mode. connect your ai agent to it.
 
-## 4. Or clone and set up
+## 4. or clone and set up
 
 ```bash
 git clone https://github.com/YOUR_ORG/organisation.md.git
@@ -40,7 +40,7 @@ cd organisation.md
 npm install
 ```
 
-## 5. Run the MCP server
+## 5. run the mcp server
 
 ```bash
 export GITHUB_TOKEN=ghp_your_token_here
@@ -49,11 +49,11 @@ export GITHUB_REPO=organisation.md
 npx tsx src/server.ts
 ```
 
-## 6. Connect to your MCP host
+## 6. connect to your mcp host
 
-### Claude Code
+### claude code
 
-Add to your `.mcp.json` or project config:
+add to your `.mcp.json` or project config:
 
 ```json
 {
@@ -71,6 +71,73 @@ Add to your `.mcp.json` or project config:
 }
 ```
 
-### Other MCP hosts
+### other mcp hosts
 
-Point your MCP host to `npx @shashank-sn/organisation-md` with the same env variables.
+point your mcp host to `npx @shashank-sn/organisation-md` with the same env variables.
+
+## all tools
+
+| tool | description |
+|------|-------------|
+| `read_org` | read the full organisation.md file |
+| `read_section` | read a specific section by heading |
+| `update_section` | propose an update to a section (creates pr) |
+| `search_context` | search across organisation.md and context/ files |
+| `propose_change` | propose a change to any file (creates pr) |
+| `list_context_files` | list all files in context/ directory |
+| `import_file` | import a txt, md, or docx file into the knowledge base |
+| `add_info` | add information via natural language — figures out section and file |
+| `remove_info` | remove information matching a description |
+| `check_roles` | check git-based roles and codeowners |
+| `check_permissions` | check if you can add/delete/approve/merge |
+| `configure_codeowners` | update .github/codeowners for team access control |
+
+## importing files
+
+the `import_file` tool lets you add files to the knowledge base.
+the ai agent reads the file content and passes it to the tool, which:
+
+1. creates a file in `context/`
+2. updates `organisation.md` with a link to the imported file
+3. opens a pull request for review
+
+supported formats: `.txt`, `.md`, `.docx` (text extracted automatically).
+
+## using natural language
+
+the `add_info` tool accepts plain english descriptions of what to add.
+it auto-detects the best section to put the information in.
+
+```text
+"our new project is called veridian, led by alice"
+→ detects "active projects" section → adds entry → creates pr
+
+"we decided to use postgres for storage"
+→ detects "decisions" section → adds entry → creates pr
+```
+
+the `remove_info` tool accepts descriptions of what to remove:
+
+```text
+"remove the project veridian entry"
+→ finds matching lines → creates pr with the change
+```
+
+## setting up team roles
+
+1. fork the repo into your organisation
+2. edit `.github/codeowners` with your team's github handles
+3. set up branch protection in your repo settings
+4. use the `check_roles` tool to verify permissions
+
+branch protection enforces that changes go through pull requests
+with the right reviewers before merging. this works with any
+github team — no additional setup needed.
+
+### codeowners example
+
+```
+# team members who can approve changes
+organisation.md @your-org/leadership @alice
+context/ @your-org/team
+```

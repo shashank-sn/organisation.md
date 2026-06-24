@@ -1,25 +1,25 @@
-# Example Flows
+# example flows
 
-## Onboarding a new hire
-
-```
-read_org → "Here's the full org context"
-read_section("Team") → read_section("Projects")
-→ Agent now knows who's who, what's active, and how we work
-```
-
-## Recording a decision
+## onboarding a new hire
 
 ```
-read_section("Decisions")
-→ Agent reads existing decisions to match format
-update_section("Decisions", "...", "record decision about architecture")
-→ PR created for review
+read_org → "here's the full org context"
+read_section("team") → read_section("projects")
+→ agent now knows who's who, what's active, and how we work
 ```
 
-## Updating project status
+## recording a decision
 
 ```
-propose_change("CONTEXT/projects.md", "...", "update project X status to shipped")
-→ PR created with the change
+read_section("decisions")
+→ agent reads existing decisions to match format
+update_section("decisions", "...", "record decision about architecture")
+→ pr created for review
+```
+
+## updating project status
+
+```
+propose_change("CONTEXT/projects.md", "...", "update project x status to shipped")
+→ pr created with the change
 ```

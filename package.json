@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.18.0",
+    "mammoth": "^1.12.0",
     "octokit": "^4.1.2",
     "zod": "^3.24.4"
   },
