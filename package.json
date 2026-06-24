@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "build:site": "node scripts/build-site.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.18.0",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "@types/node": "^22.15.3",
     "eslint": "^9.26.0",
+    "marked": "^18.0.5",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3",
     "vitest": "^3.1.3"
