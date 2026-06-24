@@ -71,16 +71,17 @@ async function addDecisionViaPr(
   decisionTitle: string,
 ): Promise<AddDecisionResult> {
   let baseBranch = "main";
+  let baseRef: Awaited<ReturnType<typeof getBranchRef>>;
   try {
-    await getBranchRef(octokit, owner, repo, "main");
+    baseRef = await getBranchRef(octokit, owner, repo, "main");
   } catch (error) {
     const err = error as { status?: number };
     // Only fall through to master on 404 — rethrow auth/server errors
     if (err.status !== 404) throw error;
     baseBranch = "master";
+    baseRef = await getBranchRef(octokit, owner, repo, "master");
   }
 
-  const baseRef = await getBranchRef(octokit, owner, repo, baseBranch);
   const branchName = `memory/decision/${Date.now()}`;
 
   await createBranch(octokit, owner, repo, branchName, baseRef.sha);

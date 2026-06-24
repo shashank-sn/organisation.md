@@ -2,7 +2,7 @@ import type { Octokit } from "octokit";
 import type { SearchResult } from "./types.js";
 import { readFile, listDirectory } from "../github/files.js";
 import { parseDocument } from "../content/parser.js";
-import { getTitle, getBody } from "./parser.js";
+import { getTitle } from "./parser.js";
 import { parseFrontmatter } from "./parser.js";
 
 export interface SearchOptions {
@@ -40,15 +40,12 @@ function findSnippet(content: string, query: string): string {
 
 function extractTitleAndMeta(content: string): { title: string; status?: string; date?: string } {
   const title = getTitle(content);
-  const body = getBody(content);
-
-  const statusMatch = body.match(/^status:\s*(.+)$/m);
-  const dateMatch = body.match(/^date:\s*(.+)$/m);
+  const fm = parseFrontmatter(content);
 
   return {
     title,
-    status: statusMatch?.[1]?.trim(),
-    date: dateMatch?.[1]?.trim(),
+    status: typeof fm.status === "string" ? fm.status : undefined,
+    date: typeof fm.date === "string" ? fm.date : undefined,
   };
 }
 
@@ -95,7 +92,7 @@ export async function searchMemory(
     try {
       const files = await listDirectory(octokit, owner, repo, "CONTEXT");
       for (const file of files) {
-        if (file.type !== "file" || file.path === "CONTEXT/events.md") continue;
+        if (file.type !== "file") continue;
         if (file.path.startsWith("CONTEXT/decisions/") || file.path.startsWith("CONTEXT/sessions/")) continue;
         try {
           const content = await readFile(octokit, owner, repo, file.path);
