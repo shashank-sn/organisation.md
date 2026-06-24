@@ -1,8 +1,7 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { Octokit } from "octokit";
 import { z } from "zod";
-import { readFile, listDirectory } from "../github/files.js";
-import { parseDocument } from "../content/parser.js";
+import { searchMemory } from "../memory/search.js";
 
 export function registerSearchTools(
   server: McpServer,
@@ -12,51 +11,26 @@ export function registerSearchTools(
 ) {
   server.tool(
     "search_context",
-    "Search across organisation.md and CONTEXT/ files for matching text.",
+    "Search across organisation.md, CONTEXT/ files, decisions, sessions, and events for matching text. Supports frontmatter field filtering.",
     {
-      query: z.string().describe("Search term to find across context files"),
+      query: z.string().describe("Search term to find across all context files"),
+      status: z.string().optional().describe("Filter by status (e.g., 'proposed', 'accepted', 'superseded')"),
+      type: z.string().optional().describe("Filter by entry type (e.g., 'decision', 'session', 'milestone', 'incident')"),
+      date_from: z.string().optional().describe("Filter by start date (YYYY-MM-DD)"),
+      date_to: z.string().optional().describe("Filter by end date (YYYY-MM-DD)"),
+      search_in: z.array(z.enum(["org", "context", "decisions", "sessions", "events"])).optional().describe("Which stores to search (defaults to all)"),
     },
     { readOnlyHint: true },
-    async ({ query }) => {
+    async ({ query, status, type, date_from, date_to, search_in }) => {
       try {
-        const results: Array<{ file: string; section: string; snippet: string }> = [];
-        const lowerQuery = query.toLowerCase();
-
-        // Search organisation.md
-        try {
-          const orgFile = await readFile(octokit, owner, repo, "organisation.md");
-          const doc = parseDocument(orgFile.content);
-
-          for (const section of doc.sections) {
-            if (section.content.toLowerCase().includes(lowerQuery)) {
-              const lines = section.content.split("\n").filter((l) => l.trim());
-              const snippet = lines.slice(0, 5).join("\n").substring(0, 300);
-              results.push({ file: "organisation.md", section: section.heading, snippet });
-            }
-          }
-        } catch {
-          // organisation.md might not exist yet
-        }
-
-        // Search CONTEXT/ files
-        try {
-          const files = await listDirectory(octokit, owner, repo, "CONTEXT");
-          for (const file of files) {
-            if (file.type !== "file") continue;
-            try {
-              const content = await readFile(octokit, owner, repo, file.path);
-              if (content.content.toLowerCase().includes(lowerQuery)) {
-                const lines = content.content.split("\n").filter((l) => l.trim());
-                const snippet = lines.slice(0, 5).join("\n").substring(0, 300);
-                results.push({ file: file.path, section: "", snippet });
-              }
-            } catch {
-              // Skip files that can't be read
-            }
-          }
-        } catch {
-          // CONTEXT/ directory might not exist
-        }
+        const results = await searchMemory(octokit, owner, repo, {
+          query,
+          status,
+          type,
+          date_from,
+          date_to,
+          search_in,
+        });
 
         if (results.length === 0) {
           return {
@@ -65,7 +39,7 @@ export function registerSearchTools(
         }
 
         const formatted = results.map((r) =>
-          `**${r.file}**${r.section ? ` → ${r.section}` : ""}:\n\`\`\`\n${r.snippet}\n\`\`\``
+          `**${r.file}**${r.title ? ` → ${r.title}` : ""}${r.status ? ` (${r.status})` : ""}:\n\`\`\`\n${r.snippet}\n\`\`\``
         ).join("\n\n");
 
         return {
