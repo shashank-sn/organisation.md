@@ -102,6 +102,16 @@ img{max-width:100%;height:auto}
 .setupStep h3{font-size:.875rem;font-weight:600;margin-bottom:.25rem}
 .setupStep p{font-size:.75rem;color:${T.inkMuted};line-height:1.5}
 
+/* decision flow — agent memory as reviewable diffs */
+.flowGrid{display:flex;gap:1.5rem;align-items:stretch;flex-wrap:wrap}
+.flowCard{flex:1;min-width:10rem;background:${T.surfaceRaised};border:1px solid ${T.border};border-radius:12px;padding:1.5rem 1.25rem;text-align:center;position:relative;transition:border-color .2s,box-shadow .2s}
+.flowCard:hover{border-color:${T.accent};box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.flowCard .flowNum{background:${T.accent};color:#fff;width:1.75rem;height:1.75rem;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;margin:0 auto .75rem}
+.flowCard h3{font-size:.85rem;font-weight:600;margin-bottom:.375rem}
+.flowCard p{font-size:.75rem;color:${T.inkMuted};line-height:1.5}
+.flowArrow{color:${T.accent};font-size:1.25rem;font-weight:700;align-self:center;flex-shrink:0;padding:0 .25rem}
+@media(max-width:768px){.flowGrid{flex-direction:column;gap:1rem}.flowArrow{transform:rotate(90deg);padding:.5rem 0}}
+
 /* quickstart terminal-style cards */
 .qsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(22rem,1fr));gap:1.25rem}
 .qsCard{background:${T.codeBg};color:${T.codeFg};border-radius:12px;overflow:hidden;position:relative}
@@ -291,6 +301,39 @@ view on github
 <div class="setupStepNum">3</div>
 <h3>run the server</h3>
 <p>start with <code>npx @shashank-sn/organisation-md</code>. your ai agents connect over stdio and read/write context naturally.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="sectionInner">
+<div class="sectionLabel">the wedge</div>
+<h2 class="sectionTitle">agent memory as reviewable diffs</h2>
+<p class="sectionSub">every context change goes through a pull request. no silent writes into agent state.</p>
+<div class="flowGrid">
+<div class="flowCard">
+<div class="flowNum">1</div>
+<h3>add a decision</h3>
+<p>an agent proposes a context update &mdash; becomes a pr.</p>
+</div>
+<div class="flowArrow">→</div>
+<div class="flowCard">
+<div class="flowNum">2</div>
+<h3>codeowners review</h3>
+<p>teammates discuss, approve, or request changes.</p>
+</div>
+<div class="flowArrow">→</div>
+<div class="flowCard">
+<div class="flowNum">3</div>
+<h3>merge</h3>
+<p>approved changes become permanent context.</p>
+</div>
+<div class="flowArrow">→</div>
+<div class="flowCard">
+<div class="flowNum">4</div>
+<h3>next agent reads it</h3>
+<p>every agent that starts sees the updated context.</p>
 </div>
 </div>
 </div>
