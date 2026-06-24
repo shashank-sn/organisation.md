@@ -9,11 +9,10 @@ mkdirSync(`${SITE_DIR}/docs`, { recursive: true });
 mkdirSync(`${SITE_DIR}/CONTEXT`, { recursive: true });
 
 // =========================================================================
-// Design System
+// design system
 // =========================================================================
 
 const T = {
-  // Colors
   ink: "#0f172a",
   inkMuted: "#475569",
   inkDim: "#94a3b8",
@@ -31,12 +30,10 @@ const T = {
   codeFg: "#e2e8f0",
   success: "#059669",
   successLight: "#d1fae5",
-  // Spacing
   gap: "1.5rem",
   sectionGap: "4rem",
   maxW: "72rem",
   contentW: "48rem",
-  // Type
   sans: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", Helvetica, Arial, sans-serif',
   mono: 'ui-monospace, "SF Mono", "Cascadia Code", "Fira Code", "JetBrains Mono", Menlo, Consolas, monospace',
 };
@@ -49,7 +46,7 @@ a{color:${T.accent};text-decoration:none;transition:color .15s}
 a:hover{color:${T.accentDark}}
 img{max-width:100%;height:auto}
 
-/* Header */
+/* header */
 .header{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
 .headerInner{max-width:${T.maxW};margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:3.5rem;padding:0 1.5rem}
 .headerLogo{font-size:.9375rem;font-weight:600;color:#f1f5f9;letter-spacing:-.01em}
@@ -60,7 +57,7 @@ img{max-width:100%;height:auto}
 .headerNav .navBtn{background:${T.accent};color:#fff!important;padding:.375rem 1rem;border-radius:9999px;font-weight:500;font-size:.8125rem}
 .headerNav .navBtn:hover{background:${T.accentDark}}
 
-/* Hero */
+/* hero */
 .hero{background:${T.heroBg};color:${T.heroFg};padding:5rem 1.5rem 4rem;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-40%;right:-20%;width:50rem;height:50rem;background:radial-gradient(circle,rgba(217,119,6,.06) 0%,transparent 70%);pointer-events:none}
 .heroInner{max-width:${T.maxW};margin:0 auto;position:relative}
@@ -76,23 +73,16 @@ img{max-width:100%;height:auto}
 .heroStat{font-size:.8125rem;color:${T.heroMuted}}
 .heroStat strong{display:block;font-size:1.25rem;color:${T.heroFg};font-weight:600;margin-bottom:.125rem}
 
-/* Sections */
+/* sections */
 .section{padding:4rem 1.5rem}
 .sectionInner{max-width:${T.maxW};margin:0 auto}
+.sectionAlt{background:${T.surfaceRaised};border-top:1px solid ${T.border};border-bottom:1px solid ${T.border}}
+.sectionDark{background:${T.heroBg};color:${T.heroFg}}
 .sectionLabel{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:${T.accent};margin-bottom:.75rem}
 .sectionTitle{font-size:clamp(1.5rem,2.5vw,2rem);font-weight:700;letter-spacing:-.015em;line-height:1.2;margin-bottom:1rem}
 .sectionSub{color:${T.inkMuted};font-size:1rem;max-width:34rem;line-height:1.7;margin-bottom:2.5rem}
-.sectionAlt{background:${T.surfaceRaised};border-top:1px solid ${T.border};border-bottom:1px solid ${T.border}}
 
-/* How it works steps */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.5rem}
-.step{background:${T.surfaceRaised};border:1px solid ${T.border};border-radius:12px;padding:1.75rem;position:relative;transition:border-color .2s,box-shadow .2s}
-.step:hover{border-color:${T.accent};box-shadow:0 4px 20px rgba(0,0,0,.06)}
-.stepNum{width:2rem;height:2rem;border-radius:8px;background:${T.accentLight};color:${T.accentDark};display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;margin-bottom:1rem}
-.step h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
-.step p{font-size:.875rem;color:${T.inkMuted};line-height:1.6}
-
-/* Tools grid */
+/* tools grid - redesigned */
 .toolsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));gap:1rem}
 .toolCard{background:${T.surfaceRaised};border:1px solid ${T.border};border-radius:10px;padding:1.25rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color .2s,box-shadow .2s}
 .toolCard:hover{border-color:${T.accent};box-shadow:0 2px 12px rgba(0,0,0,.05)}
@@ -101,39 +91,76 @@ img{max-width:100%;height:auto}
 .toolInfo code{font-family:${T.mono};font-size:.8125rem;font-weight:600;color:${T.ink}}
 .toolInfo p{font-size:.8125rem;color:${T.inkMuted};margin-top:.25rem;line-height:1.5}
 
-/* Quickstart */
-.quickstartGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(22rem,1fr));gap:1.5rem}
-.qsStep{background:${T.surfaceRaised};border:1px solid ${T.border};border-radius:12px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
-.qsStep:hover{border-color:${T.borderStrong}}
-.qsNum{width:2rem;height:2rem;border-radius:9999px;background:${T.accent};color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8125rem;font-weight:700;flex-shrink:0;margin-top:.125rem}
-.qsContent{flex:1;min-width:0}
-.qsContent strong{font-size:.9375rem;display:block;margin-bottom:.25rem}
-.qsContent p{font-size:.8125rem;color:${T.inkMuted};line-height:1.5;margin-bottom:.5rem}
-.qsContent p:last-child{margin-bottom:0}
-.qsContent a{color:${T.accent};text-decoration:underline;text-underline-offset:2px}
-.qsCode{background:${T.codeBg};color:${T.codeFg};border-radius:8px;padding:.625rem .875rem;font-family:${T.mono};font-size:.75rem;line-height:1.5;overflow-x:auto;white-space:pre;margin-top:.5rem}
+/* setup section - redesigned with pipeline visual */
+.setupFlow{display:flex;gap:0;margin-bottom:2.5rem;overflow-x:auto;padding-bottom:.5rem}
+.setupStep{flex:1;min-width:14rem;position:relative;padding:1.5rem 1.25rem;background:${T.surfaceRaised};border:1px solid ${T.border};border-right:none}
+.setupStep:first-child{border-radius:10px 0 0 10px}
+.setupStep:last-child{border-right:1px solid ${T.border};border-radius:0 10px 10px 0}
+.setupStep:hover{background:${T.accentLight};border-color:${T.accent}}
+.setupStep:hover+.setupStep,.setupStep:hover~.setupStep{border-left-color:${T.accent}}
+.setupStepNum{background:${T.accent};color:#fff;width:1.5rem;height:1.5rem;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:.6875rem;font-weight:700;margin-bottom:.75rem}
+.setupStep h3{font-size:.875rem;font-weight:600;margin-bottom:.25rem}
+.setupStep p{font-size:.75rem;color:${T.inkMuted};line-height:1.5}
 
-/* Repo grid */
+/* quickstart terminal-style cards */
+.qsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(22rem,1fr));gap:1.25rem}
+.qsCard{background:${T.codeBg};color:${T.codeFg};border-radius:12px;overflow:hidden;position:relative}
+.qsCardHeader{display:flex;gap:.375rem;padding:.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.06)}
+.qsDot{width:.5rem;height:.5rem;border-radius:9999px}
+.qsDot:nth-child(1){background:#ef4444}
+.qsDot:nth-child(2){background:#eab308}
+.qsDot:nth-child(3){background:#22c55e}
+.qsCardBody{padding:1rem 1.25rem;font-family:${T.mono};font-size:.75rem;line-height:1.7;white-space:pre;overflow-x:auto}
+.qsCardBody .hl{color:${T.accent}}
+.qsCardBody .cm{color:#6b7280}
+.qsCardBody .fn{color:#60a5fa}
+
+/* natural language upload section - new */
+.featureGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(22rem,1fr));gap:1.5rem}
+.featureCard{background:${T.surfaceRaised};border:1px solid ${T.border};border-radius:12px;padding:1.75rem;position:relative;overflow:hidden}
+.featureCard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:${T.accent};opacity:0;transition:opacity .2s}
+.featureCard:hover::before{opacity:1}
+.featureCard .icon{font-size:1.5rem;margin-bottom:.75rem;display:block}
+.featureCard h3{font-size:.9375rem;font-weight:600;margin-bottom:.375rem}
+.featureCard p{font-size:.8125rem;color:${T.inkMuted};line-height:1.6}
+.featureCard .tags{margin-top:.75rem;display:flex;gap:.375rem;flex-wrap:wrap}
+.featureCard .tags span{font-size:.6875rem;background:${T.accentLight};color:${T.accentDark};padding:.125rem .5rem;border-radius:9999px;font-weight:500}
+
+/* file tree */
+.fileTree{background:${T.surfaceRaised};border:1px solid ${T.border};border-radius:12px;padding:1.25rem 1.5rem;font-family:${T.mono};font-size:.8125rem;line-height:2;overflow-x:auto}
+.fileTree .dir{color:${T.ink};font-weight:600}
+.fileTree .file{color:${T.inkMuted}}
+.fileTree .hl{color:${T.accent}}
+.fileTree .indent{padding-left:1.5rem}
+.fileTree .indent2{padding-left:3rem}
+
+/* quickstart alternative - text-based */
+.codeBlock{background:${T.codeBg};color:${T.codeFg};border-radius:10px;padding:1rem 1.25rem;font-family:${T.mono};font-size:.8125rem;line-height:1.6;overflow-x:auto;margin:.75rem 0}
+.codeBlock .cmt{color:#6b7280}
+
+/* repo grid */
 .repoGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem}
 .repoCard{background:${T.surfaceRaised};border:1px solid ${T.border};border-radius:10px;padding:1.25rem;transition:border-color .2s}
 .repoCard:hover{border-color:${T.borderStrong}}
 .repoCard h3{font-family:${T.mono};font-size:.875rem;font-weight:600;margin-bottom:.375rem}
 .repoCard p{font-size:.8125rem;color:${T.inkMuted};line-height:1.5}
 
-/* Links bar */
+/* link bar */
 .linkBar{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:2rem}
 .linkBar a{background:${T.surfaceRaised};border:1px solid ${T.border};border-radius:10px;padding:.75rem 1.25rem;text-decoration:none;color:${T.ink};font-weight:500;font-size:.875rem;transition:border-color .2s,box-shadow .2s;display:flex;align-items:center;gap:.5rem}
 .linkBar a:hover{border-color:${T.accent};box-shadow:0 2px 8px rgba(0,0,0,.05)}
 .linkBar a span{font-size:1.1rem;line-height:1}
 
-/* Footer */
-.footer{border-top:1px solid ${T.border};padding:2.5rem 1.5rem;text-align:center}
+/* footer with built-by */
+.footer{border-top:1px solid ${T.border};padding:2.5rem 1.5rem;text-align:center;background:${T.heroBg};color:${T.heroMuted}}
 .footerInner{max-width:${T.maxW};margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
 .footer p,.footer a{font-size:.8125rem;color:${T.inkDim}}
-.footer a:hover{color:${T.ink}}
-.footerLinks{display:flex;gap:1.5rem}
+.footer a:hover{color:#fff}
+.footer .builtBy{display:flex;align-items:center;gap:.375rem}
+.footer .builtBy a{color:${T.accent};font-weight:500}
+.footer .builtBy a:hover{color:${T.accentLight}}
 
-/* Content pages */
+/* content pages */
 .pageHeader{background:${T.heroBg};color:${T.heroFg};padding:3rem 1.5rem}
 .pageHeaderInner{max-width:${T.contentW};margin:0 auto}
 .pageHeader h1{font-size:1.75rem;font-weight:700;letter-spacing:-.015em;margin-bottom:.5rem}
@@ -159,12 +186,14 @@ img{max-width:100%;height:auto}
 .pageContent td{color:${T.inkMuted}}
 .pageContent hr{border:none;border-top:1px solid ${T.border};margin:2rem 0}
 
-/* Responsive */
+/* responsive */
 @media(max-width:640px){
   .hero{padding:3rem 1rem 2.5rem}
   .hero h1{font-size:1.625rem}
   .heroStats{flex-direction:column;gap:1rem}
-  .steps,.toolsGrid,.quickstartGrid,.repoGrid{grid-template-columns:1fr}
+  .toolsGrid,.qsGrid,.featureGrid,.repoGrid{grid-template-columns:1fr}
+  .setupFlow{flex-direction:column;gap:.5rem}
+  .setupStep{border:1px solid ${T.border}!important;border-radius:8px!important;min-width:auto}
   .section{padding:2.5rem 1rem}
   .footerInner{flex-direction:column;text-align:center}
   .headerInner{padding:0 1rem}
@@ -191,23 +220,21 @@ function wrapPage(title, body) {
 <div class="headerInner">
 <a href="./" class="headerLogo">organisation.md</a>
 <nav class="headerNav">
-<a href="./">Home</a>
-<a href="./organisation.html">Context</a>
-<a href="./strategy.html">Strategy</a>
-<a href="https://github.com/shashank-sn/organisation.md">GitHub</a>
-<a href="./docs/quickstart.html" class="navBtn">Quickstart</a>
+<a href="./">home</a>
+<a href="./organisation.html">context</a>
+<a href="./strategy.html">strategy</a>
+<a href="https://github.com/shashank-sn/organisation.md">github</a>
+<a href="./docs/quickstart.html" class="navBtn">quickstart</a>
 </nav>
 </div>
 </header>
 ${body}
 <footer class="footer">
 <div class="footerInner">
-<p>MIT License &mdash; <a href="https://github.com/shashank-sn/organisation.md">Fork on GitHub</a></p>
-<div class="footerLinks">
-<a href="./">Home</a>
-<a href="./organisation.html">Context</a>
-<a href="./strategy.html">Strategy</a>
-<a href="https://github.com/shashank-sn/organisation.md">GitHub</a>
+<p>mit license &mdash; <a href="https://github.com/shashank-sn/organisation.md">view on github</a></p>
+<div class="builtBy">
+<span>built by</span>
+<a href="https://github.com/shashank-sn">shashank</a>
 </div>
 </div>
 </footer>
@@ -217,28 +244,28 @@ ${body}
 
 
 // =========================================================================
-// Landing Page
+// landing page
 // =========================================================================
 
 function buildIndex() {
   const body = `
 <section class="hero">
 <div class="heroInner">
-<div class="heroTag">MCP Server &mdash; v0.1.0</div>
-<h1>Your team&rsquo;s living memory</h1>
-<p>Every AI agent in your organisation shares one source of truth &mdash; a git repo. No database. No hosted service. Just your team&rsquo;s context in markdown.</p>
+<div class="heroTag">mcp server &mdash; v0.1.0</div>
+<h1>your team&rsquo;s living memory.</h1>
+<p>every ai agent in your organisation shares one source of truth &mdash; a git repo. no database. no hosted service. just your team&rsquo;s context in markdown.</p>
 <div class="heroActions">
 <a href="./docs/quickstart.html" class="heroCta">
-Get Started
+get started
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </a>
 <a href="https://github.com/shashank-sn/organisation.md" class="heroSecondary">
-<span>&#x6F;&#x72;</span> View on GitHub
+view on github
 </a>
 </div>
 <div class="heroStats">
-<div class="heroStat"><strong>6</strong> MCP Tools</div>
-<div class="heroStat"><strong>PR-based</strong> Write flow</div>
+<div class="heroStat"><strong>14</strong> mcp tools</div>
+<div class="heroStat"><strong>pr-based</strong> write flow</div>
 <div class="heroStat"><strong>1</strong> env var needed</div>
 </div>
 </div>
@@ -246,24 +273,24 @@ Get Started
 
 <section class="section">
 <div class="sectionInner">
-<div class="sectionLabel">How it works</div>
-<h2 class="sectionTitle">Context your AI agents can actually read</h2>
-<p class="sectionSub">Fork the repo, fill in your team&rsquo;s context, and connect any MCP-compatible AI tool.</p>
-<div class="steps">
-<div class="step">
-<div class="stepNum">1</div>
-<h3>Fork the repo</h3>
-<p>Copy <code>organisation.md</code> into your GitHub organisation. The template includes Identity, Team, Projects, Decisions, and Preferences sections.</p>
+<div class="sectionLabel">how it works</div>
+<h2 class="sectionTitle">context your ai agents can actually read</h2>
+<p class="sectionSub">fork the repo, fill in your team&rsquo;s context, and connect any mcp-compatible ai tool.</p>
+<div class="setupFlow">
+<div class="setupStep">
+<div class="setupStepNum">1</div>
+<h3>fork the repo</h3>
+<p>copy <code>organisation.md</code> into your github org. the template includes identity, team, projects, decisions, and preferences sections.</p>
 </div>
-<div class="step">
-<div class="stepNum">2</div>
-<h3>Write your context</h3>
-<p>Edit the markdown files with your org&rsquo;s actual data &mdash; who does what, which projects are active, past decisions, and team preferences.</p>
+<div class="setupStep">
+<div class="setupStepNum">2</div>
+<h3>write your context</h3>
+<p>edit the markdown files with your org&rsquo;s actual data &mdash; who does what, which projects are active, past decisions.</p>
 </div>
-<div class="step">
-<div class="stepNum">3</div>
-<h3>Run the server</h3>
-<p>Start the MCP server with <code>npx @shashank-sn/organisation-md</code>. Your AI agents connect over stdio and read/write context naturally.</p>
+<div class="setupStep">
+<div class="setupStepNum">3</div>
+<h3>run the server</h3>
+<p>start with <code>npx @shashank-sn/organisation-md</code>. your ai agents connect over stdio and read/write context naturally.</p>
 </div>
 </div>
 </div>
@@ -271,50 +298,106 @@ Get Started
 
 <section class="section sectionAlt">
 <div class="sectionInner">
-<div class="sectionLabel">Tools</div>
-<h2 class="sectionTitle">Six MCP tools, one purpose</h2>
-<p class="sectionSub">Read, search, and propose updates to your organisation&rsquo;s context &mdash; all through pull requests.</p>
+<div class="sectionLabel">tools</div>
+<h2 class="sectionTitle">14 mcp tools, one purpose</h2>
+<p class="sectionSub">read, search, and propose updates to your organisation&rsquo;s context &mdash; all through pull requests.</p>
 <div class="toolsGrid">
 <div class="toolCard">
 <div class="toolIcon">&#x1F4C4;</div>
 <div class="toolInfo">
 <code>read_org</code>
-<p>Read the full organisation.md file from the GitHub repo.</p>
+<p>read the full organisation.md file from the github repo.</p>
 </div>
 </div>
 <div class="toolCard">
 <div class="toolIcon">&#x1F50D;</div>
 <div class="toolInfo">
 <code>read_section</code>
-<p>Read a specific section by heading (e.g. <code>Team</code>, <code>Decisions</code>).</p>
+<p>read a specific section by heading (e.g. <code>team</code>, <code>decisions</code>).</p>
 </div>
 </div>
 <div class="toolCard">
 <div class="toolIcon">&#x270F;&#xFE0F;</div>
 <div class="toolInfo">
 <code>update_section</code>
-<p>Propose an update to any section &mdash; creates a pull request.</p>
+<p>propose an update to any section &mdash; creates a pull request.</p>
 </div>
 </div>
 <div class="toolCard">
 <div class="toolIcon">&#x1F50E;</div>
 <div class="toolInfo">
 <code>search_context</code>
-<p>Search across organisation.md and all CONTEXT files.</p>
+<p>search across organisation.md and all context files.</p>
 </div>
 </div>
 <div class="toolCard">
 <div class="toolIcon">&#x1F4DD;</div>
 <div class="toolInfo">
 <code>propose_change</code>
-<p>Propose a change to any tracked file &mdash; creates a PR.</p>
+<p>propose a change to any tracked file &mdash; creates a pr.</p>
 </div>
 </div>
 <div class="toolCard">
 <div class="toolIcon">&#x1F4C1;</div>
 <div class="toolInfo">
 <code>list_context_files</code>
-<p>List all files in the CONTEXT directory.</p>
+<p>list all files in the context directory.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F4E5;</div>
+<div class="toolInfo">
+<code>import_file</code>
+<p>import a txt, md, or docx file into the knowledge base.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x2795;</div>
+<div class="toolInfo">
+<code>add_info</code>
+<p>add info via natural language &mdash; auto-detects the section.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x2796;</div>
+<div class="toolInfo">
+<code>remove_info</code>
+<p>remove info via natural language &mdash; auto-detects what to remove.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F6E1;&#xFE0F;</div>
+<div class="toolInfo">
+<code>check_roles</code>
+<p>check which users can modify which files.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F511;</div>
+<div class="toolInfo">
+<code>check_permissions</code>
+<p>check a user&rsquo;s permissions across the repo.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F4CB;</div>
+<div class="toolInfo">
+<code>configure_codeowners</code>
+<p>set up codeowners for path-level access control.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F41B;</div>
+<div class="toolInfo">
+<code>report_bug</code>
+<p>auto-detect the area and file a github issue.</p>
+</div>
+</div>
+<div class="toolCard">
+<div class="toolIcon">&#x1F4A1;</div>
+<div class="toolInfo">
+<code>suggest_feature</code>
+<p>suggest a feature &mdash; creates a github issue automatically.</p>
 </div>
 </div>
 </div>
@@ -323,72 +406,166 @@ Get Started
 
 <section class="section">
 <div class="sectionInner">
-<div class="sectionLabel">Setup</div>
-<h2 class="sectionTitle">From zero to running in 30 seconds</h2>
-<p class="sectionSub">One environment variable. One npx command. No database setup, no deployment pipeline.</p>
-<div class="quickstartGrid">
-<div class="qsStep">
-<div class="qsNum">1</div>
-<div class="qsContent">
-<strong>Generate a PAT</strong>
-<p>Go to <a href="https://github.com/settings/tokens">GitHub Settings</a> and create a classic token with <code>repo</code> scope.</p>
+<div class="sectionLabel">setup</div>
+<h2 class="sectionTitle">from zero to running in 30 seconds</h2>
+<p class="sectionSub">one environment variable. one npx command. no database setup, no deployment pipeline.</p>
+
+<div class="qsGrid">
+<div class="qsCard">
+<div class="qsCardHeader">
+<div class="qsDot"></div>
+<div class="qsDot"></div>
+<div class="qsDot"></div>
+</div>
+<div class="qsCardBody"><span class="cm"># generate a pat and export it</span>
+export <span class="hl">github_token</span>=ghp_your_token
+export <span class="hl">github_owner</span>=your-org
+export <span class="hl">github_repo</span>=organisation.md
+
+<span class="cm"># run with npx</span>
+npx @shashank-sn/organisation-md</div>
+</div>
+
+<div class="qsCard">
+<div class="qsCardHeader">
+<div class="qsDot"></div>
+<div class="qsDot"></div>
+<div class="qsDot"></div>
+</div>
+<div class="qsCardBody"><span class="cm"># or clone and run</span>
+git clone https://github.com/<span class="hl">your-org</span>/organisation.md
+cd organisation.md
+npm install
+
+<span class="cm"># start the server</span>
+npx tsx src/server.ts</div>
 </div>
 </div>
-<div class="qsStep">
-<div class="qsNum">2</div>
-<div class="qsContent">
-<strong>Set your env vars</strong>
-<div class="qsCode">export GITHUB_TOKEN=ghp_yours
-export GITHUB_OWNER=your-org
-export GITHUB_REPO=organisation.md</div>
+
+<div class="qsGrid" style="margin-top:1rem">
+<div class="qsCard">
+<div class="qsCardHeader">
+<div class="qsDot"></div>
+<div class="qsDot"></div>
+<div class="qsDot"></div>
+</div>
+<div class="qsCardBody"><span class="cm"># add to your .mcp.json</span>
+{
+  "mcpServers": {
+    "organisation.md": {
+      "command": "npx",
+      "args": ["@shashank-sn/organisation-md"],
+      "env": {
+        "github_token": "ghp_...",
+        "github_owner": "your-org",
+        "github_repo": "organisation.md"
+      }
+    }
+  }
+}</div>
+</div>
+
+<div class="qsCard">
+<div class="qsCardHeader">
+<div class="qsDot"></div>
+<div class="qsDot"></div>
+<div class="qsDot"></div>
+</div>
+<div class="qsCardBody"><span class="cm"># connect and read your context</span>
+<span class="fn">read_org</span> → your full organisation.md
+<span class="fn">read_section</span> team → your team section
+<span class="fn">search_context</span> "decisions" → matching entries
+<span class="fn">update_section</span> projects → creates a pr</div>
 </div>
 </div>
-<div class="qsStep">
-<div class="qsNum">3</div>
-<div class="qsContent">
-<strong>Run with npx</strong>
-<div class="qsCode">npx @shashank-sn/organisation-md</div>
-<p>Or clone and run: <code>npm install && npx tsx src/server.ts</code></p>
-</div>
-</div>
-<div class="qsStep">
-<div class="qsNum">4</div>
-<div class="qsContent">
-<strong>Connect your MCP host</strong>
-<p>Point Claude Code, Cursor, or any MCP host to the server. See the <a href="./docs/quickstart.html">full quickstart guide</a>.</p>
-</div>
-</div>
+
+<div style="margin-top:1.5rem;padding:1rem 1.25rem;background:${T.accentLight};border-radius:8px;border:1px solid ${T.accent};font-size:.8125rem;color:${T.accentDark}">
+<strong>need help?</strong> see the <a href="./docs/quickstart.html" style="text-decoration:underline">full quickstart guide</a>, or check the <a href="./docs/example-flows.html" style="text-decoration:underline">example workflows</a>.
 </div>
 </div>
 </section>
 
 <section class="section sectionAlt">
 <div class="sectionInner">
-<div class="sectionLabel">Repository</div>
-<h2 class="sectionTitle">Everything in one place</h2>
-<p class="sectionSub">The repo structure is designed to grow with your team. Start with the template, add context files as you go.</p>
+<div class="sectionLabel">import &amp; manage</div>
+<h2 class="sectionTitle">bring your own files</h2>
+<p class="sectionSub">upload folders of <code>.txt</code>, <code>.md</code>, or <code>.docx</code> files. the server parses them, creates context entries, and updates <code>organisation.md</code> as your navigation index.</p>
+<div class="featureGrid">
+<div class="featureCard">
+<span class="icon">&#x1F4C2;</span>
+<h3>folder upload</h3>
+<p>point the server at a folder of files. every <code>.txt</code>, <code>.md</code>, and <code>.docx</code> file becomes a context entry under <code>context/</code>.</p>
+<div class="tags">
+<span>.txt</span>
+<span>.md</span>
+<span>.docx</span>
+</div>
+</div>
+<div class="featureCard">
+<span class="icon">&#x1F4AC;</span>
+<h3>natural language crud</h3>
+<p>add, edit, or remove information by speaking naturally. the server parses your intent and updates the right files.</p>
+<div class="tags">
+<span>ai-powered</span>
+<span>pr-based</span>
+</div>
+</div>
+<div class="featureCard">
+<span class="icon">&#x1F511;</span>
+<h3>role-based access</h3>
+<p>control who can add, delete, or approve changes through git itself &mdash; codeowners, branch protection, and commit signing.</p>
+<div class="tags">
+<span>git-native</span>
+<span>team-ready</span>
+</div>
+</div>
+</div>
+
+<div style="margin-top:2rem">
+<div class="fileTree">
+<div class="dir">organisation.md/</div>
+<div class="indent"><span class="hl">organisation.md</span> <span class="file"># your navigation index</span></div>
+<div class="indent">
+  <span class="dir">context/</span>
+  <div class="indent"><span class="file">projects.md</span></div>
+  <div class="indent"><span class="file">architecture.md</span></div>
+  <div class="indent"><span class="file">people.md</span></div>
+  <div class="indent"><span class="file" style="color:${T.accent}">+ your uploaded files here</span></div>
+</div>
+<div class="indent"><span class="dir">src/</span></div>
+<div class="indent"><span class="dir">docs/</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="sectionInner">
+<div class="sectionLabel">repository</div>
+<h2 class="sectionTitle">everything in one place</h2>
+<p class="sectionSub">the repo structure is designed to grow with your team. start with the template, add context files as you go.</p>
 <div class="repoGrid">
 <div class="repoCard">
 <h3>organisation.md</h3>
-<p>Canonical context file &mdash; Identity, Mission, Team, Projects, Decisions, and more.</p>
+<p>canonical context file &mdash; identity, mission, team, projects, decisions, and more.</p>
 </div>
 <div class="repoCard">
-<h3>CONTEXT/</h3>
-<p>Supporting docs for projects, architecture, people, and anything else that deserves its own file.</p>
+<h3>context/</h3>
+<p>supporting docs for projects, architecture, people, and anything else that deserves its own file.</p>
 </div>
 <div class="repoCard">
 <h3>src/</h3>
-<p>TypeScript MCP server with Octokit integration, markdown parser, and tool implementations.</p>
+<p>typescript mcp server with octokit integration, markdown parser, and tool implementations.</p>
 </div>
 <div class="repoCard">
 <h3>docs/</h3>
-<p>Quickstart guide, agent prompt template, example flows, and product strategy.</p>
+<p>quickstart guide, agent prompt template, example flows, and product strategy.</p>
 </div>
 </div>
 <div class="linkBar">
-<a href="./organisation.html"><span>&#x1F4C4;</span> View Organisation Context</a>
-<a href="./strategy.html"><span>&#x1F3AF;</span> View Strategy</a>
-<a href="https://github.com/shashank-sn/organisation.md"><span>&#x1F419;</span> View on GitHub</a>
+<a href="./organisation.html"><span>&#x1F4C4;</span> view organisation context</a>
+<a href="./strategy.html"><span>&#x1F3AF;</span> view strategy</a>
+<a href="https://github.com/shashank-sn/organisation.md"><span>&#x1F419;</span> view on github</a>
 </div>
 </div>
 </section>`;
@@ -397,7 +574,7 @@ export GITHUB_REPO=organisation.md</div>
 
 
 // =========================================================================
-// Content Pages
+// content pages
 // =========================================================================
 
 function buildContentPage(src, title) {
@@ -415,9 +592,9 @@ function buildContentPage(src, title) {
 
 function buildDocsPages() {
   const docFiles = [
-    { src: "docs/quickstart.md", title: "Quickstart" },
-    { src: "docs/agent-prompt.md", title: "Agent Prompt" },
-    { src: "docs/example-flows.md", title: "Example Flows" },
+    { src: "docs/quickstart.md", title: "quickstart" },
+    { src: "docs/agent-prompt.md", title: "agent prompt" },
+    { src: "docs/example-flows.md", title: "example flows" },
   ];
   for (const doc of docFiles) {
     try {
@@ -433,21 +610,21 @@ function buildDocsPages() {
       const html = wrapPage(`${doc.title} — organisation.md`, body);
       writeFileSync(`${SITE_DIR}/docs/${doc.src.replace("docs/", "").replace(/\.md$/, ".html")}`, html);
     } catch {
-      // Skip if file doesn't exist
+      // skip if file doesn't exist
     }
   }
 }
 
 
 // =========================================================================
-// Execute
+// execute
 // =========================================================================
 
 writeFileSync(`${SITE_DIR}/index.html`, buildIndex());
-writeFileSync(`${SITE_DIR}/README.html`, buildContentPage("README.md", "README"));
-writeFileSync(`${SITE_DIR}/organisation.html`, buildContentPage("organisation.md", "Organisation Context"));
-writeFileSync(`${SITE_DIR}/strategy.html`, buildContentPage("STRATEGY.md", "Strategy"));
+writeFileSync(`${SITE_DIR}/README.html`, buildContentPage("README.md", "readme"));
+writeFileSync(`${SITE_DIR}/organisation.html`, buildContentPage("organisation.md", "organisation context"));
+writeFileSync(`${SITE_DIR}/strategy.html`, buildContentPage("STRATEGY.md", "strategy"));
 buildDocsPages();
 try { cpSync("CONTEXT", `${SITE_DIR}/CONTEXT`, { recursive: true }); } catch {}
 
-console.log("Site built in _site/");
+console.log("site built in _site/");

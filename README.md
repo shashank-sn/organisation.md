@@ -80,6 +80,14 @@ the server speaks mcp over stdio. configure your ai tool to launch it:
 | `search_context` | search across `organisation.md` and all `context/` files |
 | `propose_change` | propose a change to any file in the repo — creates a pull request |
 | `list_context_files` | list all files in the `context/` directory |
+| `import_file` | import a txt, md, or docx file into the knowledge base |
+| `add_info` | add information via natural language — auto-detects the section |
+| `remove_info` | remove information matching a description |
+| `check_roles` | check git-based roles and codeowners |
+| `check_permissions` | check if you can add/delete/approve/merge |
+| `configure_codeowners` | update `.github/codeowners` for team access control |
+| `report_bug` | auto-detect the area and file a github issue |
+| `suggest_feature` | suggest a feature or improvement as a github issue |
 
 ## repository structure
 

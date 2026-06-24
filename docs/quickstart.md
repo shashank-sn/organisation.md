@@ -91,6 +91,8 @@ point your mcp host to `npx @shashank-sn/organisation-md` with the same env vari
 | `check_roles` | check git-based roles and codeowners |
 | `check_permissions` | check if you can add/delete/approve/merge |
 | `configure_codeowners` | update .github/codeowners for team access control |
+| `report_bug` | auto-detect the area and file a github issue |
+| `suggest_feature` | suggest a feature or improvement as a github issue |
 
 ## importing files
 
