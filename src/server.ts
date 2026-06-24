@@ -2,7 +2,7 @@
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { createGitHubClient } from "./github/client.js";
+import { Octokit } from "octokit";
 import { registerReadTools } from "./tools/read.js";
 import { registerWriteTools } from "./tools/write.js";
 import { registerProposeTools } from "./tools/propose.js";
@@ -38,15 +38,15 @@ const server = new McpServer(
   }
 );
 
-const github = createGitHubClient(GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO);
+const octokit = new Octokit({ auth: GITHUB_TOKEN });
 const orgFilePath = "organisation.md";
 
-registerReadTools(server, github, orgFilePath);
-registerWriteTools(server, github, orgFilePath);
-registerProposeTools(server, github);
-registerSearchTools(server, github);
-registerListTools(server, github);
-registerResources(server, github, orgFilePath);
+registerReadTools(server, octokit, GITHUB_OWNER, GITHUB_REPO, orgFilePath);
+registerWriteTools(server, octokit, GITHUB_OWNER, GITHUB_REPO, orgFilePath);
+registerProposeTools(server, octokit, GITHUB_OWNER, GITHUB_REPO);
+registerSearchTools(server, octokit, GITHUB_OWNER, GITHUB_REPO);
+registerListTools(server, octokit, GITHUB_OWNER, GITHUB_REPO);
+registerResources(server, octokit, GITHUB_OWNER, GITHUB_REPO, orgFilePath);
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
