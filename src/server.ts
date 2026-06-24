@@ -11,6 +11,7 @@ import { registerListTools } from "./tools/list.js";
 import { registerImportTools } from "./tools/import.js";
 import { registerManageTools } from "./tools/manage.js";
 import { registerRoleTools } from "./tools/roles.js";
+import { registerIssueTools } from "./tools/issues.js";
 import { registerResources } from "./resources/index.js";
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
@@ -40,7 +41,8 @@ const server = new McpServer(
       "use update_section and propose_change to propose updates — they create pull requests for review. " +
       "use import_file to bring txt, md, or docx files into the knowledge base. " +
       "use add_info and remove_info to manage context via natural language. " +
-      "use check_roles, check_permissions, and configure_codeowners for team access control.",
+      "use check_roles, check_permissions, and configure_codeowners for team access control. " +
+      "use report_bug and suggest_feature to create github issues automatically.",
   }
 );
 
@@ -55,6 +57,7 @@ registerListTools(server, octokit, GITHUB_OWNER, GITHUB_REPO);
 registerImportTools(server, octokit, GITHUB_OWNER, GITHUB_REPO, orgFilePath);
 registerManageTools(server, octokit, GITHUB_OWNER, GITHUB_REPO, orgFilePath);
 registerRoleTools(server, octokit, GITHUB_OWNER, GITHUB_REPO);
+registerIssueTools(server, octokit, GITHUB_OWNER, GITHUB_REPO);
 registerResources(server, octokit, GITHUB_OWNER, GITHUB_REPO, orgFilePath);
 
 const transport = new StdioServerTransport();

@@ -1,0 +1,36 @@
+name: feature request
+description: suggest an idea for organisation.md
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        thanks for suggesting an idea.
+  - type: textarea
+    id: problem
+    attributes:
+      label: problem
+      description: what problem would this feature solve?
+      placeholder: it's hard to find context about past architectural decisions
+  - type: textarea
+    id: solution
+    attributes:
+      label: proposed solution
+      description: what should the feature do?
+      placeholder: add a `get_timeline` tool that shows changes to sections over time
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: alternatives considered
+      description: any alternative solutions you've considered
+  - type: dropdown
+    id: area
+    attributes:
+      label: area
+      options:
+        - mcp server
+        - docs
+        - templates
+        - site
+        - other

@@ -1,0 +1,52 @@
+name: bug report
+description: report a bug to help us improve
+title: "bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        thanks for taking the time to report a bug.
+  - type: textarea
+    id: description
+    attributes:
+      label: describe the bug
+      description: a clear description of what the bug is
+      placeholder: when i run read_section on "team", it returns an empty section even though the section has content
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: to reproduce
+      description: steps to reproduce the behavior
+      placeholder: |
+        1. connect to the mcp server
+        2. run `read_section` with heading "team"
+        3. see error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: expected behavior
+      description: what you expected to happen
+  - type: textarea
+    id: context
+    attributes:
+      label: additional context
+      description: |
+        add any other context about the problem here (mcp host used, os, version, etc.)
+        <details>
+          <summary>mcp server logs (optional)</summary>
+        </details>
+  - type: dropdown
+    id: area
+    attributes:
+      label: area
+      options:
+        - mcp server
+        - docs
+        - templates
+        - site
+        - other
