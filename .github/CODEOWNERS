@@ -1,0 +1,24 @@
+# codeowners defines who can approve changes to specific paths.
+# learn more: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+# 
+# each line: pattern @owner
+# - use team names (@org/team-name) for groups
+# - multiple owners = anyone on the list can approve
+# - order matters — last match wins for conflicts
+#
+# examples:
+# organisation.md @your-org/leadership
+# CONTEXT/decisions.md @your-org/leadership
+# CONTEXT/ @your-org/team
+
+# default owners (everyone in the org)
+* @your-org/engineering
+
+# core context — requires leadership approval
+organisation.md @your-org/leadership
+
+# context files — team-wide
+CONTEXT/ @your-org/team
+
+# infrastructure — ops team
+.github/workflows/ @your-org/ops

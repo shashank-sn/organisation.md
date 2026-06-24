@@ -1,29 +1,29 @@
 # organisation.md
 
-**Your team's living memory — an MCP server backed by a git repo.**
+**your team's living memory — an mcp server backed by a git repo.**
 
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 [![CI](https://github.com/shashank-sn/organisation.md/actions/workflows/ci.yml/badge.svg)](https://github.com/shashank-sn/organisation.md/actions/workflows/ci.yml)
 
-`organisation.md` turns any GitHub repository into your organisation's persistent context layer. Any MCP-compatible AI tool (Claude Code, Cursor, etc.) can **read**, **search**, and **propose updates** to your team's shared context — without a database, without a hosted service, without leaving your GitHub account.
+`organisation.md` turns any github repository into your organisation's persistent context layer. any mcp-compatible ai tool (claude code, cursor, etc.) can **read**, **search**, and **propose updates** to your team's shared context — without a database, without a hosted service, without leaving your github account.
 
 ---
 
-## How it works
+## how it works
 
-1. **Fork** this repository into your GitHub organisation.
-2. **Edit** `organisation.md` with your team's identity, projects, decisions, and preferences.
-3. **Run** the MCP server — your AI agents connect and read/write context naturally.
+1. **fork** this repository into your github organisation.
+2. **edit** `organisation.md` with your team's identity, projects, decisions, and preferences.
+3. **run** the mcp server — your ai agents connect and read/write context naturally.
 
-All changes go through **pull requests** — your team reviews and merges them. Git provides version history, branching, and access control out of the box.
+all changes go through **pull requests** — your team reviews and merges them. git provides version history, branching, and access control out of the box.
 
-## Quickstart
+## quickstart
 
-### 1. Generate a Personal Access Token
+### 1. generate a personal access token
 
-Go to [github.com/settings/tokens](https://github.com/settings/tokens) and generate a **classic token** with the `repo` scope. Copy the token — you'll need it in the next step.
+go to [github.com/settings/tokens](https://github.com/settings/tokens) and generate a **classic token** with the `repo` scope. copy the token — you'll need it in the next step.
 
-### 2. Run with npx (recommended)
+### 2. run with npx (recommended)
 
 ```bash
 export GITHUB_TOKEN=ghp_your_token_here
@@ -32,9 +32,9 @@ export GITHUB_REPO=organisation.md
 npx @shashank-sn/organisation-md
 ```
 
-That's it. The MCP server starts in stdio mode and your AI agent can connect.
+that's it. the mcp server starts in stdio mode and your ai agent can connect.
 
-### 3. Or clone and run locally
+### 3. or clone and run locally
 
 ```bash
 git clone https://github.com/your-org/organisation.md.git
@@ -46,11 +46,11 @@ export GITHUB_REPO=organisation.md
 npx tsx src/server.ts
 ```
 
-### 4. Connect to your AI agent
+### 4. connect to your ai agent
 
-The server speaks MCP over stdio. Configure your AI tool to launch it:
+the server speaks mcp over stdio. configure your ai tool to launch it:
 
-**Claude Code** — add to your `.mcp.json`:
+**claude code** — add to your `.mcp.json`:
 
 ```json
 {
@@ -68,74 +68,74 @@ The server speaks MCP over stdio. Configure your AI tool to launch it:
 }
 ```
 
-**Cursor / Continue / Other MCP hosts** — point to the same command with env vars.
+**cursor / continue / other mcp hosts** — point to the same command with env vars.
 
-## Tools
+## tools
 
-| Tool | Description |
+| tool | description |
 |------|-------------|
-| `read_org` | Read the full `organisation.md` file from the GitHub repo |
-| `read_section` | Read a specific section by heading (e.g., "Team", "Decisions") |
-| `update_section` | Propose an update to a section — creates a pull request |
-| `search_context` | Search across `organisation.md` and all `CONTEXT/` files |
-| `propose_change` | Propose a change to any file in the repo — creates a pull request |
-| `list_context_files` | List all files in the `CONTEXT/` directory |
+| `read_org` | read the full `organisation.md` file from the github repo |
+| `read_section` | read a specific section by heading (e.g., "team", "decisions") |
+| `update_section` | propose an update to a section — creates a pull request |
+| `search_context` | search across `organisation.md` and all `context/` files |
+| `propose_change` | propose a change to any file in the repo — creates a pull request |
+| `list_context_files` | list all files in the `context/` directory |
 
-## Repository structure
+## repository structure
 
 ```
 organisation.md/
-├── organisation.md          # Canonical org context file
-├── CONTEXT/                 # Supporting context files
+├── organisation.md          # canonical org context file
+├── context/                 # supporting context files
 │   ├── README.md
-│   ├── projects.md          # Detailed project info
-│   ├── architecture.md      # System architecture
-│   └── people.md            # Team members and roles
-├── src/                     # MCP server source (TypeScript)
-│   ├── server.ts            # Entry point
-│   ├── github/              # Octokit wrapper (files, git API)
-│   ├── content/             # Markdown parser and template
-│   ├── tools/               # MCP tool implementations
-│   └── resources/           # MCP resource templates
-├── docs/                    # Documentation
-│   ├── quickstart.md        # Full setup guide
-│   ├── agent-prompt.md      # Prompt template for AI agents
-│   └── example-flows.md     # Common workflows
+│   ├── projects.md          # detailed project info
+│   ├── architecture.md      # system architecture
+│   └── people.md            # team members and roles
+├── src/                     # mcp server source (typescript)
+│   ├── server.ts            # entry point
+│   ├── github/              # octokit wrapper (files, git api)
+│   ├── content/             # markdown parser and template
+│   ├── tools/               # mcp tool implementations
+│   └── resources/           # mcp resource templates
+├── docs/                    # documentation
+│   ├── quickstart.md        # full setup guide
+│   ├── agent-prompt.md      # prompt template for ai agents
+│   └── example-flows.md     # common workflows
 ├── scripts/
-│   └── build-site.mjs       # GitHub Pages build script
+│   └── build-site.mjs       # github pages build script
 ├── .github/workflows/
-│   ├── ci.yml               # CI: typecheck + test on push/PR
-│   └── pages.yml            # GitHub Pages deployment
-├── STRATEGY.md              # Product strategy
-├── LICENSE                  # MIT
+│   ├── ci.yml               # ci: typecheck + test on push/pr
+│   └── pages.yml            # github pages deployment
+├── strategy.md              # product strategy
+├── license                  # mit
 └── README.md
 ```
 
-## Environment variables
+## environment variables
 
-| Variable | Required | Description |
+| variable | required | description |
 |----------|----------|-------------|
-| `GITHUB_TOKEN` | Yes | GitHub Personal Access Token with `repo` scope |
-| `GITHUB_OWNER` | Yes | GitHub username or organisation that owns the repo |
-| `GITHUB_REPO` | Yes | Repository name (defaults to `organisation.md`) |
+| `github_token` | yes | github personal access token with `repo` scope |
+| `github_owner` | yes | github username or organisation that owns the repo |
+| `github_repo` | yes | repository name (defaults to `organisation.md`) |
 
-## Customisation
+## customisation
 
-1. **Edit `organisation.md`** — replace the template content with your team's actual identity, projects, and decisions.
-2. **Add `CONTEXT/` files** — create additional markdown files for deeper context (architecture docs, runbooks, etc.).
-3. **Fork and rename** — fork the repo into your org and update the env vars to point at your fork.
+1. **edit `organisation.md`** — replace the template content with your team's actual identity, projects, and decisions.
+2. **add `context/` files** — create additional markdown files for deeper context (architecture docs, runbooks, etc.).
+3. **fork and rename** — fork the repo into your org and update the env vars to point at your fork.
 
-## Development
+## development
 
 ```bash
 npm install
-npm run dev         # Development server with hot reload
-npm test            # Run tests
-npm run typecheck   # TypeScript checking
-npm run build       # Compile TypeScript
-npm run build:site  # Build GitHub Pages site locally
+npm run dev         # development server with hot reload
+npm test            # run tests
+npm run typecheck   # typescript checking
+npm run build       # compile typescript
+npm run build:site  # build github pages site locally
 ```
 
-## License
+## license
 
-MIT — fork it, use it, ship it. See [LICENSE](./LICENSE).
+mit — fork it, use it, ship it. see [license](./license).
