@@ -19,6 +19,7 @@ export function parseTransportMode(env?: string): TransportMode {
 /**
  * Parse the PORT env var into a number.
  * Defaults to 3000 when unset or invalid.
+ * Warns on stderr when the env var is set but cannot be parsed.
  */
 export function parsePort(env?: string): number {
   if (env) {
@@ -26,6 +27,7 @@ export function parsePort(env?: string): number {
     if (!isNaN(parsed) && parsed > 0 && parsed <= 65535) {
       return parsed;
     }
+    console.error(`Warning: Invalid PORT value "${env}", falling back to 3000`);
   }
   return 3000;
 }
