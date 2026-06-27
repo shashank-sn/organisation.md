@@ -38,9 +38,10 @@ the mcp server starts in stdio mode. connect your ai agent to it.
 git clone https://github.com/YOUR_ORG/organisation.md.git
 cd organisation.md
 npm install
+cp .env.example .env    # then edit .env with your values
 ```
 
-## 5. run the mcp server
+## 5. run the mcp server (stdio mode — default)
 
 ```bash
 export GITHUB_TOKEN=ghp_your_token_here
@@ -49,7 +50,22 @@ export GITHUB_REPO=organisation.md
 npx tsx src/server.ts
 ```
 
-## 6. connect to your mcp host
+the server starts in stdio mode. connect your local agent to it.
+
+## 6. run in sse mode (for remote agents)
+
+```bash
+export GITHUB_TOKEN=ghp_your_token_here
+export GITHUB_OWNER=your-github-username-or-org
+export GITHUB_REPO=organisation.md
+export TRANSPORT=sse
+export PORT=3000
+npx tsx src/server.ts
+```
+
+the server starts on `http://localhost:3000/sse`. configure your remote mcp host to connect to this endpoint with POST messages at `http://localhost:3000/messages`.
+
+## 7. connect to your mcp host
 
 ### claude code
 

@@ -3,6 +3,8 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { Octokit } from "octokit";
+import { parseTransportMode, parsePort } from "./transport/types.js";
+import { startSseServer } from "./transport/sse.js";
 import { registerReadTools } from "./tools/read.js";
 import { registerWriteTools } from "./tools/write.js";
 import { registerProposeTools } from "./tools/propose.js";
@@ -93,5 +95,12 @@ registerIssueTools(server, octokit, GITHUB_OWNER, GITHUB_REPO);
 registerMemoryTools(server, octokit, GITHUB_OWNER, GITHUB_REPO);
 registerResources(server, octokit, GITHUB_OWNER, GITHUB_REPO, orgFilePath);
 
-const transport = new StdioServerTransport();
-await server.connect(transport);
+const mode = parseTransportMode(process.env.TRANSPORT);
+
+if (mode === "sse") {
+  const port = parsePort(process.env.PORT);
+  await startSseServer(server, { port });
+} else {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+}

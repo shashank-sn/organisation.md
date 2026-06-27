@@ -73,11 +73,9 @@ export function registerImportTools(
         // Read current organisation.md
         let needsOrgUpdate = false;
         let orgUpdateContent = "";
-        let orgFileSha = "";
 
         try {
           const orgFile = await readFile(octokit, owner, repo, orgFilePath);
-          orgFileSha = orgFile.sha;
           const doc = parseDocument(orgFile.content);
           const targetSection = section || importName;
           const existingSection = getSection(doc, targetSection);

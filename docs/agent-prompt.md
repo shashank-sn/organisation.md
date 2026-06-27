@@ -22,6 +22,28 @@ add the following to your `.mcp.json` or equivalent mcp host configuration:
 }
 ```
 
+## sse mode (for remote agents)
+
+if you're connecting remotely, start the server with `TRANSPORT=sse`:
+
+```json
+{
+  "mcpServers": {
+    "organisation.md": {
+      "command": "npx",
+      "args": ["@shashank-sn/organisation-md"],
+      "env": {
+        "GITHUB_TOKEN": "ghp_...",
+        "GITHUB_OWNER": "your-org",
+        "GITHUB_REPO": "organisation.md",
+        "TRANSPORT": "sse",
+        "PORT": "3000"
+      }
+    }
+  }
+}
+```
+
 ## prompt template
 
 ```markdown

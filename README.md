@@ -34,7 +34,19 @@ npx @shashank-sn/organisation-md
 
 that's it. the mcp server starts in stdio mode and your ai agent can connect.
 
-### 3. or clone and run locally
+### 3. run in sse mode (for remote agents)
+
+```bash
+export GITHUB_TOKEN=ghp_your_token_here
+export GITHUB_OWNER=your-github-username-or-org
+export GITHUB_REPO=organisation.md
+export TRANSPORT=sse
+npx @shashank-sn/organisation-md
+```
+
+the server starts on `http://localhost:3000/sse`. configure your remote mcp host to connect to this endpoint.
+
+### 4. or clone and run locally
 
 ```bash
 git clone https://github.com/your-org/organisation.md.git
@@ -119,13 +131,21 @@ organisation.md/
 └── README.md
 ```
 
-## environment variables
+## configuration
 
-| variable | required | description |
-|----------|----------|-------------|
-| `github_token` | yes | github personal access token with `repo` scope |
-| `github_owner` | yes | github username or organisation that owns the repo |
-| `github_repo` | yes | repository name (defaults to `organisation.md`) |
+copy `.env.example` to `.env` and fill in your values:
+
+```bash
+cp .env.example .env
+```
+
+| variable | required | default | description |
+|----------|----------|---------|-------------|
+| `GITHUB_TOKEN` | yes | — | github personal access token with `repo` scope |
+| `GITHUB_OWNER` | yes | — | github username or organisation that owns the repo |
+| `GITHUB_REPO` | yes | — | repository name (e.g., `organisation.md`) |
+| `TRANSPORT` | no | `stdio` | transport mode — `stdio` for local mcp hosts, `sse` for remote connections |
+| `PORT` | no | `3000` | port for sse transport (only used when `TRANSPORT=sse`) |
 
 ## customisation
 

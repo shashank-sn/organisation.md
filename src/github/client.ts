@@ -1,14 +1,4 @@
-import { Octokit } from "octokit";
-import type { GitHubConfig } from "./types.js";
 import { GitHubError } from "./types.js";
-
-export function createGitHubClient(token: string, owner: string, repo: string): Octokit {
-  return new Octokit({ auth: token });
-}
-
-export function getConfig(token: string, owner: string, repo: string): GitHubConfig {
-  return { token, owner, repo };
-}
 
 export async function handleGitHubError<T>(promise: Promise<T>): Promise<T> {
   try {
