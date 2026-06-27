@@ -42,7 +42,6 @@ export function registerProposeTools(
         }
 
         if (fileSha) {
-          const { writeFile } = await import("../github/files.js");
           await writeFile(octokit, owner, repo, path, content, fileSha, branchName, message);
         } else {
           await createFile(octokit, owner, repo, path, content, branchName, message);

@@ -2,6 +2,11 @@ import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { Octokit } from "octokit";
 import { z } from "zod";
 import { handleGitHubError } from "../github/client.js";
+import { readFile, writeFile, createFile } from "../github/files.js";
+import {
+  getBranchRef, createBranch, generateBranchName,
+  createPullRequest, createBlob, createTree, createCommit, updateBranch,
+} from "../github/git.js";
 
 export function registerRoleTools(
   server: McpServer,
@@ -58,7 +63,6 @@ export function registerRoleTools(
         // Try to read CODEOWNERS
         let codeowners = "not found";
         try {
-          const { readFile } = await import("../github/files.js");
           const co = await readFile(octokit, owner, repo, ".github/CODEOWNERS");
           codeowners = co.content;
         } catch {
@@ -113,8 +117,6 @@ export function registerRoleTools(
       const commitMsg = message || `set codeowners: ${pattern} → ${owners}`;
 
       try {
-        const { readFile, writeFile, createFile } = await import("../github/files.js");
-        const { getBranchRef, createBranch, generateBranchName, createPullRequest, createBlob, createTree, createCommit, updateBranch } = await import("../github/git.js");
 
         let baseBranch = "main";
         try { await getBranchRef(octokit, owner, repo, "main"); } catch { baseBranch = "master"; }

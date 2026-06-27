@@ -2,6 +2,7 @@ import type { Octokit } from "octokit";
 import type { FileContent, ContentItem } from "./types.js";
 import { GitHubError } from "./types.js";
 import { handleGitHubError } from "./client.js";
+import { fileCache } from "../cache/index.js";
 
 export async function readFile(
   octokit: Octokit,
@@ -9,7 +10,16 @@ export async function readFile(
   repo: string,
   path: string,
   ref?: string,
+  useCache = true,
 ): Promise<FileContent> {
+  // Check cache first
+  if (useCache) {
+    const cached = fileCache.get(path, ref ?? null);
+    if (cached) {
+      return { content: cached.content, sha: cached.sha, path: cached.path };
+    }
+  }
+
   const response = await handleGitHubError(
     octokit.rest.repos.getContent({
       owner,
@@ -27,11 +37,24 @@ export async function readFile(
 
   const decoded = Buffer.from(data.content, "base64").toString("utf-8");
 
-  return {
+  const result: FileContent = {
     content: decoded,
     sha: data.sha,
     path: data.path,
   };
+
+  // Cache the result
+  if (useCache) {
+    fileCache.set({
+      content: result.content,
+      sha: result.sha,
+      path: result.path,
+      ref: ref ?? null,
+      cachedAt: Date.now(),
+    });
+  }
+
+  return result;
 }
 
 export async function writeFile(
@@ -55,6 +78,7 @@ export async function writeFile(
       branch,
     }),
   );
+  fileCache.invalidate(path);
 }
 
 export async function createFile(
@@ -76,6 +100,7 @@ export async function createFile(
       branch,
     }),
   );
+  fileCache.invalidate(path);
 }
 
 export async function listDirectory(
